@@ -7,12 +7,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @JmixEntity
 @Table(name = "TIME_ENTRY", indexes = {
         @Index(name = "IDX_TIME_ENTRY_TASK", columnList = "TASK_ID"),
-        @Index(name = "IDX_TIME_ENTRY_ENTRY_DATE", columnList = "ENTRY_DATE_ID")
+        @Index(name = "IDX_TIME_ENTRY_ENTRY_DATE", columnList = "ENTRY_DATE_ID"),
+        @Index(name = "IDX_TIME_ENTRY_USER", columnList = "USER_ID")
 })
 @Entity
 public class TimeEntry {
@@ -20,6 +22,11 @@ public class TimeEntry {
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
+
+    @JoinColumn(name = "USER_ID", nullable = false)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private User user;
 
     @JoinColumn(name = "TASK_ID")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,6 +48,14 @@ public class TimeEntry {
     @NotNull
     private String description;
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -53,7 +68,7 @@ public class TimeEntry {
         return entryDate;
     }
 
-    public void setEntryDate(User entryDate) {
+    public void setEntryDate(LocalDateTime entryDate) {
         this.entryDate = entryDate;
     }
 

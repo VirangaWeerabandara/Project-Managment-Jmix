@@ -37,6 +37,8 @@
                     <action id="lookupAction_1" type="entity_lookup"/>
                 </actions>
             </entityPicker>
+            <fileStorageUploadField id="attachmentField" property="attachment" clearButtonVisible="true"
+                                    fileNameVisible="true" uploadIcon="vaadin:upload" maxFileSize="10000000"/>
         </formLayout>
         <hbox>
             <button id="detailCloseButton" action="closeAction"/>
