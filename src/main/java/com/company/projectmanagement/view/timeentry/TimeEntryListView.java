@@ -12,5 +12,5 @@ import io.jmix.flowui.view.*;
 @LookupComponent("timeEntriesDataGrid")
 @DialogMode(width = "64em")
 public class TimeEntryListView extends StandardListView<TimeEntry> {
-    
+
 }
