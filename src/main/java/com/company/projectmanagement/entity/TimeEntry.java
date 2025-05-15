@@ -13,7 +13,6 @@ import java.util.UUID;
 @JmixEntity
 @Table(name = "TIME_ENTRY", indexes = {
         @Index(name = "IDX_TIME_ENTRY_TASK", columnList = "TASK_ID"),
-        @Index(name = "IDX_TIME_ENTRY_ENTRY_DATE", columnList = "ENTRY_DATE_ID"),
         @Index(name = "IDX_TIME_ENTRY_USER", columnList = "USER_ID")
 })
 @Entity
@@ -22,11 +21,6 @@ public class TimeEntry {
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
-
-    @JoinColumn(name = "USER_ID", nullable = false)
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private User user;
 
     @JoinColumn(name = "TASK_ID")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,24 +31,19 @@ public class TimeEntry {
     @NotNull
     private Integer timeSpent;
 
-    @JoinColumn(name = "ENTRY_DATE_ID", nullable = false)
+    @Column(name = "ENTRY_DATE", nullable = false)
+    @NotNull
+    private LocalDateTime entryDate;
+
+    @JoinColumn(name = "USER_ID", nullable = false)
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private User entryDate;
+    private User user;
 
     @InstanceName
-    @Column(name = "DESCRIPTION", nullable = false)
+    @Column(name = "DESCRIPTION")
     @Lob
-    @NotNull
     private String description;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public String getDescription() {
         return description;
@@ -64,7 +53,15 @@ public class TimeEntry {
         this.description = description;
     }
 
-    public User getEntryDate() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public LocalDateTime getEntryDate() {
         return entryDate;
     }
 

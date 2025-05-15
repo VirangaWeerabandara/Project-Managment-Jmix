@@ -6,8 +6,8 @@
         <instance id="timeEntryDc"
                   class="com.company.projectmanagement.entity.TimeEntry">
             <fetchPlan extends="_base">
-                <property name="user" fetchPlan="_instance_name"/>
                 <property name="task" fetchPlan="_instance_name"/>
+                <property name="user" fetchPlan="_instance_name"/>
             </fetchPlan>
             <loader id="timeEntryDl"/>
         </instance>
@@ -25,12 +25,6 @@
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
-            <entityPicker id="userField" property="user">
-                <actions>
-                    <action id="entityLookupAction" type="entity_lookup"/>
-                    <action id="entityClearAction" type="entity_clear"/>
-                </actions>
-            </entityPicker>
             <entityPicker id="taskField" property="task">
                 <actions>
                     <action id="entityLookupAction" type="entity_lookup"/>
@@ -38,6 +32,13 @@
                 </actions>
             </entityPicker>
             <textField id="timeSpentField" property="timeSpent"/>
+            <dateTimePicker id="entryDateField" property="entryDate"/>
+            <entityPicker id="userField" property="user">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
             <textArea id="descriptionField" height="9.5em" property="description"/>
         </formLayout>
         <hbox id="detailActions">

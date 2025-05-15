@@ -7,8 +7,8 @@
         <collection id="timeEntriesDc"
                     class="com.company.projectmanagement.entity.TimeEntry">
             <fetchPlan extends="_base">
-                <property name="user" fetchPlan="_instance_name"/>
                 <property name="task" fetchPlan="_instance_name"/>
+                <property name="user" fetchPlan="_instance_name"/>
             </fetchPlan>
             <loader id="timeEntriesDl" readOnly="true">
                 <query>
@@ -50,9 +50,10 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="user"/>
                 <column property="task"/>
                 <column property="timeSpent"/>
+                <column property="entryDate"/>
+                <column property="user"/>
                 <column property="description"/>
             </columns>
         </dataGrid>
